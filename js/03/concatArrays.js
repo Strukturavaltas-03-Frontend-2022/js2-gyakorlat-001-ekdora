@@ -4,11 +4,11 @@
 - A függvény neve `concatArrays` legyen! 
 
 A függvény:
-   - összefűzi egy tömbbe az összes elemet,
-   - eltávolítja az ismétlődő elemeket,
-   - eltávolítja az összes olyan string-et, amely tartalmazza az első paraméterként megadott karaktert,
-   - eltávolítja a string-ek végén lévő whitespace karaktert,
-   - visszaadja ezt az új tömböt.
+	 - összefűzi egy tömbbe az összes elemet,
+	 - eltávolítja az ismétlődő elemeket,
+	 - eltávolítja az összes olyan string-et, amely tartalmazza az első paraméterként megadott karaktert,
+	 - eltávolítja a string-ek végén lévő whitespace karaktert,
+	 - visszaadja ezt az új tömböt.
 
 ## 3/b. 
 - Alakítsd át úgy az előző feladatot, hogy ne egy függvényed legyen, hanem minden egyes részfeladat legyen külön függvénybe szervezve, tehát:
@@ -22,12 +22,20 @@ A függvény:
 const animals = ["kutya", " macska ", " nyúl ", "dinnye"];
 const fruits = ["alma", "körte", "szilva", "dinnye", "szőlő"];
 const nature = ["kutya", "virág", "fa"];
-const char = "a";
-const proba = ["kutya", "macska", "kutya", "dinnye"];
+const letter = "a";
 
-const concatArrays = (...array) => array.concat(array);
-console.log(concatArrays(char, animals, fruits, nature));
+const concatArraysToArray = (...array) => [ ...array.flat() ];
+console.log(concatArraysToArray(animals, fruits, nature));
+
+const trimArrayItems = (array) => array.map(item => item.trim());
+console.log(trimArrayItems(animals));
 
 const removeDuplicates = (array) => [...new Set(array)];
-console.log(removeDuplicates(proba));
+console.log(removeDuplicates(trimArrayItems(concatArraysToArray(animals, fruits, nature))));
 
+const concatArrays = (char, ...array) => removeDuplicates(
+	trimArrayItems(concatArraysToArray(...array))
+).filter(item => !item.includes(char));
+console.log(concatArrays(letter, animals, fruits, nature));
+
+export default concatArrays;
