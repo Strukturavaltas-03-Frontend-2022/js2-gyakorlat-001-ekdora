@@ -16,9 +16,10 @@ const janeDoe = {
     lastName: 'Doe'
 }
 
-const objectsMerge = (object1, object2) => {
-    return
+const objectsMerge = (...objectsToMerge) => {
+    return { ...objectsToMerge };
 };
 
-export default objectsMerge;
+console.log(objectsMerge(johnDoe, janeDoe));
 
+export default objectsMerge;

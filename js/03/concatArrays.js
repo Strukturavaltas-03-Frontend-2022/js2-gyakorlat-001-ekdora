@@ -19,3 +19,15 @@ A függvény:
 **Egyik függvénynél se módosítsd a paraméterként kapott tömböt. Mindig újat hozz létre!** 
 **Tartsd szem előtt, hogy egy függvény csak egy dolgot csináljon!** */
 
+const animals = ["kutya", " macska ", " nyúl ", "dinnye"];
+const fruits = ["alma", "körte", "szilva", "dinnye", "szőlő"];
+const nature = ["kutya", "virág", "fa"];
+const char = "a";
+const proba = ["kutya", "macska", "kutya", "dinnye"];
+
+const concatArrays = (...array) => array.concat(array);
+console.log(concatArrays(char, animals, fruits, nature));
+
+const removeDuplicates = (array) => [...new Set(array)];
+console.log(removeDuplicates(proba));
+
