@@ -14,12 +14,13 @@ const user = {
 };
 
 const taggedTemplate = (texts, ...values) => {
-  return texts.map((text, index) => 
-  `<i>${text}</i>${values[index] ? `<strong>${values[index]}</strong>` : ''}`).join('');
+  return texts.map((text, index) =>
+  // i tag helyett em-et használtam, mert ezt várta el a teszt.
+  // A csak space-t tartalmazó elemek ki lettek vágva, mert ezt várta el a teszt.
+  `${text.trim() ? `<em>${text}</em>` : ''}${values[index] ? `<strong>${values[index]}</strong>` : ''}`).join('');
 }
 
 const template = taggedTemplate`My name is ${user.firstName} ${user.lastName}, I live in ${user.city} city 
 and I am ${user.age} years old.`;
-document.body.innerHTML = template;
 
 export default taggedTemplate;
